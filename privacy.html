@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Privacy Policy</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
   <style>
     :root {
       --primary-color: #007BFF;
@@ -19,6 +21,7 @@
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      scroll-behavior: smooth;
     }
 
     header {
@@ -43,6 +46,11 @@
       font-weight: bold;
       padding: 0.5rem 1rem;
       border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: #555;
     }
 
     nav a.active {
@@ -127,7 +135,6 @@
       border-top: 1px solid rgba(0, 0, 0, 0.1);
     }
 
-    /* Responsive Styles */
     @media (max-width: 768px) {
       .container {
         padding: 1rem;
@@ -152,12 +159,12 @@
 </head>
 <body>
 
-  <header>
+  <header data-aos="fade-down">
     <h1>My E-commerce</h1>
     <p>Your privacy matters to us</p>
   </header>
 
-  <nav>
+  <nav data-aos="fade-up">
     <a href="index.html">Home</a>
     <a href="about.html">About Us</a>
     <a href="shippingInfo.html">Shipping Info</a>
@@ -166,26 +173,26 @@
     <a href="contact.html">Contact</a>
   </nav>
 
-  <div class="container">
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
     <h2><i class="fas fa-user-shield"></i> Privacy Policy</h2>
 
     <p>At My E-commerce, your privacy is our priority. This policy explains how we collect, use, and protect your information.</p>
 
-    <h3>1. Information We Collect</h3>
+    <h3 data-aos="fade-right">1. Information We Collect</h3>
     <ul>
       <li><strong>Personal Information:</strong> Name, email, address, phone number.</li>
       <li><strong>Payment Details:</strong> Collected securely during checkout (not stored on our servers).</li>
       <li><strong>Usage Data:</strong> Pages visited, time spent, and device/browser details.</li>
     </ul>
 
-    <h3>2. How We Use Your Information</h3>
+    <h3 data-aos="fade-right">2. How We Use Your Information</h3>
     <ul>
       <li>To process your orders and deliver products.</li>
       <li>To send updates, promotions, or important service notices.</li>
       <li>To improve our website and user experience.</li>
     </ul>
 
-    <h3>3. Information Sharing</h3>
+    <h3 data-aos="fade-right">3. Information Sharing</h3>
     <p>We do not sell or rent your data. We may share limited data with:</p>
     <ul>
       <li>Trusted delivery partners to complete orders.</li>
@@ -193,26 +200,26 @@
       <li>Legal authorities if required by law.</li>
     </ul>
 
-    <h3>4. Data Security</h3>
+    <h3 data-aos="fade-right">4. Data Security</h3>
     <p>We use encryption, firewalls, and secure servers to protect your information from unauthorized access.</p>
 
-    <h3>5. Your Rights</h3>
+    <h3 data-aos="fade-right">5. Your Rights</h3>
     <ul>
       <li>Access your data.</li>
       <li>Request corrections or deletions.</li>
       <li>Opt out of marketing at any time.</li>
     </ul>
 
-    <h3>6. Cookies</h3>
+    <h3 data-aos="fade-right">6. Cookies</h3>
     <p>We use cookies to personalize your experience and analyze traffic. You can adjust your cookie settings in your browser.</p>
 
-    <h3>7. Changes to This Policy</h3>
+    <h3 data-aos="fade-right">7. Changes to This Policy</h3>
     <p>This policy may be updated from time to time. Changes will be posted here with a revised date.</p>
 
     <p>If you have questions, please <a href="contact.html">contact us</a>.</p>
   </div>
 
-  <footer>
+  <footer data-aos="fade-up">
     <div class="footer-content">
       <div class="footer-section">
         <h3>About Us</h3>
@@ -250,5 +257,12 @@
     </div>
   </footer>
 
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+  </script>
 </body>
 </html>
