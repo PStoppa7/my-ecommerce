@@ -44,10 +44,28 @@
       font-weight: bold;
       padding: 0.5rem 1rem;
       border-radius: 5px;
+      transition: transform 0.3s ease;
     }
 
     nav a.active, nav a:hover {
       background-color: var(--primary-color);
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .container,
+    .calculator {
+      animation: fadeIn 1s ease-in-out both;
     }
 
     .container {
@@ -105,10 +123,12 @@
       border-radius: 25px;
       cursor: pointer;
       font-weight: bold;
+      transition: transform 0.3s ease;
     }
 
     .calculator button:hover {
       background-color: #0056b3;
+      transform: scale(1.05);
     }
 
     #resultBox {
@@ -151,8 +171,15 @@
     }
 
     .faq-answer {
-      padding: 0 1rem 1rem 1rem;
-      display: none;
+      max-height: 0;
+      overflow: hidden;
+      padding: 0 1rem;
+      transition: max-height 0.4s ease, padding 0.3s ease;
+    }
+
+    .faq-answer.show {
+      max-height: 300px;
+      padding-top: 1rem;
     }
 
     footer {
@@ -389,11 +416,11 @@
     document.querySelectorAll(".faq-question").forEach(q => {
       q.addEventListener("click", () => {
         const answer = q.nextElementSibling;
-        const isVisible = answer.style.display === "block";
-        document.querySelectorAll(".faq-answer").forEach(a => a.style.display = "none");
+        const isVisible = answer.classList.contains("show");
+        document.querySelectorAll(".faq-answer").forEach(a => a.classList.remove("show"));
         document.querySelectorAll(".faq-question span").forEach(s => s.textContent = "+");
         if (!isVisible) {
-          answer.style.display = "block";
+          answer.classList.add("show");
           q.querySelector("span").textContent = "−";
         }
       });
