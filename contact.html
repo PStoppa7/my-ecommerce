@@ -18,6 +18,22 @@
       background-color: #f5f5f5;
     }
 
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
     /* Navbar */
     nav {
       background-color: var(--primary-color);
@@ -27,6 +43,7 @@
       align-items: center;
       padding: 1rem 2rem;
       color: white;
+      animation: fadeIn 1.2s ease-in;
     }
 
     nav .logo {
@@ -84,6 +101,14 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
+    .contact-form {
+      animation: slideInLeft 1s ease-out;
+    }
+
+    .contact-info {
+      animation: slideInRight 1s ease-out;
+    }
+
     .contact-form h2, .contact-info h2 {
       margin-bottom: 1rem;
     }
@@ -132,6 +157,7 @@
       margin-top: 1.5rem;
       color: green;
       font-weight: bold;
+      animation: fadeIn 0.5s ease-in-out;
     }
 
     .info-item {
@@ -152,6 +178,7 @@
       background-color: var(--footer-bg);
       color: black;
       padding: 3rem 0;
+      animation: fadeIn 1.2s ease-in;
     }
 
     .footer-content {
