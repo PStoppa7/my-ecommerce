@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shipping Information - My E-commerce</title>
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    header {
+      background-color: #007BFF;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    nav {
+      background-color: #333;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+    }
+
+    nav a.active {
+      background-color: #007BFF;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      color: #007BFF;
+    }
+
+    ul {
+      line-height: 1.7;
+      padding-left: 1.2rem;
+    }
+
+    i {
+      margin-right: 10px;
+      color: #007BFF;
+    }
+
+    .calculator {
+      margin-top: 2rem;
+      padding: 2rem;
+      background: linear-gradient(to right, #e0f7fa, #f1f8e9);
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    .calculator label {
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    .calculator input,
+    .calculator select {
+      width: 100%;
+      max-width: 350px;
+      padding: 0.6rem;
+      margin-top: 0.3rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      transition: border 0.2s ease;
+    }
+
+    .calculator input:focus,
+    .calculator select:focus {
+      border-color: #007BFF;
+      outline: none;
+    }
+
+    .calculator button {
+      margin-top: 1rem;
+      padding: 0.6rem 1.5rem;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .calculator button:hover {
+      background-color: #0056b3;
+    }
+
+    #resultBox {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background-color: #d0f0c0;
+      border-left: 5px solid #2e7d32;
+      border-radius: 8px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.5s ease;
+    }
+
+    #resultBox.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .faq-section {
+      margin-top: 2rem;
+    }
+
+    .faq {
+      background-color: #f1f1f1;
+      margin-bottom: 1rem;
+      border-radius: 5px;
+    }
+
+    .faq-question {
+      padding: 1rem;
+      cursor: pointer;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-answer {
+      padding: 0 1rem 1rem 1rem;
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #111;
+      color: white;
+      margin-top: 2rem;
+    }
+    footer {
+            background-color: var(--footer-bg);
+            color: black;
+            padding: 3rem 0;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: grey;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            font-size: 1.5rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+         /* Responsive Design */
+         @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+        }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>My E-commerce</h1>
+    <p>Your favorite place to shop online</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About Us</a>
+    <a href="shippingInfo.html" class="active">Shipping Info</a>
+    <a href="return-policy.html">Returns</a>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <div class="container">
+    <h2><i class="fas fa-truck"></i> Shipping Information</h2>
+    <p>We deliver your orders quickly and reliably. Here's what you need to know:</p>
+
+    <h3><i class="fas fa-shipping-fast"></i> Delivery Options</h3>
+    <ul>
+      <li><strong>Standard Shipping:</strong> 3–5 business days (free on orders over R500)</li>
+      <li><strong>Express Shipping:</strong> 1–2 business days (R99 flat rate)</li>
+      <li><strong>Same-Day Delivery:</strong> Available in select areas (R149)</li>
+    </ul>
+
+    <h3><i class="fas fa-globe-africa"></i> Shipping Locations</h3>
+    <ul>
+      <li>Delivery available throughout South Africa.</li>
+      <li>International shipping on request — contact us first.</li>
+    </ul>
+
+    <h3><i class="fas fa-clock"></i> Order Processing</h3>
+    <ul>
+      <li>Orders before 2PM are processed same day.</li>
+      <li>After 2PM, processing begins the next business day.</li>
+    </ul>
+
+    <h3><i class="fas fa-location-arrow"></i> Tracking Orders</h3>
+    <ul>
+      <li>Tracking sent via SMS or email after dispatch.</li>
+      <li>Track anytime from your ShopEase account.</li>
+    </ul>
+
+    <!-- Shipping Calculator -->
+    <div class="calculator">
+        <h3><i class="fas fa-calculator"></i> Estimate Your Shipping Cost</h3>
+        <form id="shippingForm" onsubmit="event.preventDefault(); calculateShipping();">
+          <label for="area">Select Your Area:</label>
+          <select id="area" required>
+            <option value="">-- Choose an area --</option>
+            <option value="standard">Gauteng (Standard)</option>
+            <option value="express">Western Cape (Express)</option>
+            <option value="sameDay">Joburg Same-Day</option>
+            <option value="free">Spend Over R500</option>
+          </select>
+      
+          <label for="weight">Package Weight (kg):</label>
+          <input type="number" id="weight" min="0.1" step="0.1" placeholder="e.g. 2.5" required>
+      
+          <button type="submit">Calculate</button>
+        </form>
+      
+        <div id="resultBox" class="hidden">
+          <p id="resultText"></p>
+        </div>
+      </div>
+      
+    <!-- FAQ Section -->
+    <div class="faq-section">
+      <h3><i class="fas fa-question-circle"></i> Shipping FAQs</h3>
+      <div class="faq">
+        <div class="faq-question">Can I change my address after ordering? <span>+</span></div>
+        <div class="faq-answer">Yes, within 2 hours of ordering. Contact support immediately to update details.</div>
+      </div>
+      <div class="faq">
+        <div class="faq-question">What if my package is delayed? <span>+</span></div>
+        <div class="faq-answer">Delays are rare. If your package hasn't arrived in the estimated time, contact us and we'll assist right away.</div>
+      </div>
+      <div class="faq">
+        <div class="faq-question">Do you deliver on weekends? <span>+</span></div>
+        <div class="faq-answer">Express and same-day options may include Saturday delivery depending on your area.</div>
+      </div>
+    </div>
+
+  </div>
+  <footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>About Us</h3>
+            <p>We are dedicated to bringing you the finest selection of art, clothing, and accessories. Our curated collection ensures quality and style.</p>
+        </div>
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <ul>
+                <li><a href=index.html>Home</a></li>
+                <li><a href=index.html>Shop</a></li>
+                <li><a href=about.html>About</a></li>
+                <li><a href=contact.html>Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Customer Service</h3>
+            <ul>
+                <li><a href=shippingInfo.html>Shipping Info</a></li>
+                <li><a href=return-policy.html>Returns Policy</a></li>
+                <li><a href=FAQ.html>FAQ</a></li>
+                <li><a href=privacy.html>Privacy Policy</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h3>Connect With Us</h3>
+            <p>Follow us on social media for updates and inspiration.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; Phenyo Web dev. All rights reserved.</p>
+    </div>
+</footer>
+
+  <!-- JavaScript for Shipping Calculator and FAQ -->
+  <script>
+    function calculateShipping() {
+      const area = document.getElementById("area").value;
+      const weight = parseFloat(document.getElementById("weight").value);
+      const resultBox = document.getElementById("resultBox");
+      const resultText = document.getElementById("resultText");
+
+      if (!area || isNaN(weight)) {
+        resultText.textContent = "Please select an area and enter weight.";
+        resultBox.classList.add("show");
+        return;
+      }
+
+      let cost = 0;
+
+      switch(area) {
+        case "free":
+          cost = 0;
+          break;
+        case "standard":
+          cost = 50 + (weight * 10);
+          break;
+        case "express":
+          cost = 99 + (weight * 12);
+          break;
+        case "sameDay":
+          cost = 149;
+          break;
+      }
+
+      resultText.textContent = `Estimated Shipping Cost: R${cost.toFixed(2)}`;
+      resultBox.classList.remove("hidden");
+      setTimeout(() => resultBox.classList.add("show"), 100);
+    }
+
+    // FAQ toggle
+    const questions = document.querySelectorAll(".faq-question");
+    questions.forEach(q => {
+      q.addEventListener("click", () => {
+        const answer = q.nextElementSibling;
+        const isVisible = answer.style.display === "block";
+        document.querySelectorAll(".faq-answer").forEach(a => a.style.display = "none");
+        document.querySelectorAll(".faq-question span").forEach(s => s.textContent = "+");
+        if (!isVisible) {
+          answer.style.display = "block";
+          q.querySelector("span").textContent = "−";
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

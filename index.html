@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Modern E-commerce Gallery Shop - Find the best products">
+    <meta name="keywords" content="ecommerce, shop, art, clothing, accessories">
+    <title>My E-commerce</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #4CAF50;
+            --danger-color: #f44336;
+            --text-color: #333;
+            --background-color:#E6F0FF;
+            --border-color: #ccc;
+            --shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+        .main-nav {
+            background-color: var(--nav-bg);
+            padding: 1rem 0;
+            position: relative;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: grey;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-brand {
+            color: black;
+            font-size: 1.5rem;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        footer {
+            background-color: var(--footer-bg);
+            color: black;
+            padding: 3rem 0;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: grey;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            font-size: 1.5rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+         /* Responsive Design */
+         @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+        }
+
+        /* Navigation */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background-color: var(--background-color);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        #filters {
+            display: flex;
+            gap: 1rem;
+        }
+
+        #filters input,
+        #filters select {
+            padding: 0.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        /* Gallery */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            position: relative;
+        }
+
+        .slides-container {
+            position: relative;
+            margin-bottom: 1rem;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+            overflow: hidden;
+            aspect-ratio: 16 / 9;
+        }
+
+        .mySlides {
+            display: none;
+            text-align: center;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .mySlides.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .mySlides img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .product-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem;
+            text-align: left;
+            transform: translateY(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .mySlides:hover .product-info {
+            transform: translateY(0);
+        }
+
+        /* Thumbnails */
+        .row {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+            padding: 1rem;
+            background: #f8f8f8;
+            border-radius: 8px;
+        }
+
+        .column {
+            text-align: center;
+            aspect-ratio: 1;
+        }
+
+        .demo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0.6;
+        }
+
+        .demo:hover,
+        .demo.active {
+            opacity: 1;
+            transform: scale(1.05);
+            box-shadow: var(--shadow);
+        }
+
+        .prev,
+        .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 1rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+
+        .prev { left: 1rem; }
+        .next { right: 1rem; }
+
+        .prev:hover,
+        .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        /* Cart */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100vh;
+            background-color: var(--background-color);
+            box-shadow: var(--shadow);
+            padding: 1rem;
+            transition: right 0.3s ease-in-out;
+            z-index: 1000;
+        }
+
+        .cart-sidebar.open {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .cart-total {
+            margin-top: 1rem;
+            padding: 1rem 0;
+            border-top: 2px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+        }
+
+        .cart-buttons {
+            display: grid;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .btn-danger,
+        .btn-success {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .btn-danger {
+            background-color: var(--danger-color);
+        }
+
+        .btn-success {
+            background-color: var(--primary-color);
+        }
+
+        .btn-danger:hover,
+        .btn-success:hover {
+            opacity: 0.9;
+        }
+
+        /* Toast Notifications */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            padding: 1rem 2rem;
+            background-color: #333;
+            color: white;
+            border-radius: 4px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 2000;
+        }
+
+        .toast.show {
+            opacity: 1;
+        }
+
+        /* Loading Spinner */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            #filters {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+
+            .prev,
+            .next {
+                padding: 0.5rem;
+            }
+        }
+
+        .add-to-cart-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 0.5rem;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: #45a049;
+        }
+
+        /* Category Sections */
+        .category-sections {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .category-section {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .category-section h2 {
+            color: var(--text-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-size: 2rem;
+            position: relative;
+        }
+
+        .category-section h2::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: var(--primary-color);
+            margin: 0.5rem auto;
+        }
+
+        /* Update existing styles */
+        .slides-container {
+            margin-bottom: 2rem;
+            height: 400px;
+        }
+
+        .row {
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1.5rem;
+            padding: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .category-section {
+                padding: 1rem;
+            }
+
+            .slides-container {
+                height: 300px;
+            }
+
+            .row {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                gap: 1rem;
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href=index.html class="nav-brand"> My E-Commerce</a>
+            <ul class="nav-links">
+                <li><a href=index.html><i class="fas fa-home"></i> Home</a></li>
+                <li><a href=about.html><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href=shippingInfo.html><i class="fas fa-shipping-fast"></i>
+                </i></i>Shipping Info</a></li>
+                <li> <a href=return-policy.html></a><i class="fas fa-exchange-alt"></i></i>Returns</a></li>
+                <li><a href=privacy.html><i class="fas fa-lock"></i></i>Privacy Policy</a></li>
+                <li><a href=contact.html><i class="fas fa-envelope"></i> Contact</a></li>
+                
+                <li></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <h1>My E-Commerce</h1>
+            </div>
+            <div class="nav-controls">
+                <div id="filters">
+                    <input type="text" id="searchInput" placeholder="Search products..." aria-label="Search products">
+                    <select id="categoryFilter" aria-label="Filter by category">
+                        <option value="all">All Categories</option>
+                        <option value="art">Art</option>
+                        <option value="clothing">Clothing</option>
+                        <option value="accessories">Accessories</option>
+                    </select>
+                </div>
+                <button id="cart-toggle" aria-label="Toggle cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-count">0</span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="category-sections">
+                <!-- Art Section -->
+                <section class="category-section" id="art-section">
+                    <h2>Art Gallery</h2>
+                    <div class="slides-container" id="art-slides-container"></div>
+                    <div class="row" id="art-thumbnails"></div>
+                </section>
+
+                <!-- Clothing Section -->
+                <section class="category-section" id="clothing-section">
+                    <h2>Fashion Collection</h2>
+                    <div class="slides-container" id="clothing-slides-container"></div>
+                    <div class="row" id="clothing-thumbnails"></div>
+                </section>
+
+                <!-- Accessories Section -->
+                <section class="category-section" id="accessories-section">
+                    <h2>Accessories</h2>
+                    <div class="slides-container" id="accessories-slides-container"></div>
+                    <div class="row" id="accessories-thumbnails"></div>
+                </section>
+            </div>
+        </div>
+
+        <aside id="cart" class="cart-sidebar">
+            <div class="cart-header">
+                <h3>🛒 Shopping Cart</h3>
+                <button class="close-cart" aria-label="Close cart">&times;</button>
+            </div>
+            <div id="cart-items"></div>
+            <div class="cart-total">
+                <span>Total:</span>
+                <span>R<span id="cart-total">0</span></span>
+            </div>
+            <div class="cart-buttons">
+                <button id="clear-cart" class="btn-danger">Clear Cart</button>
+                <button id="checkout" class="btn-success">Checkout</button>
+            </div>
+        </aside>
+        
+    </main>
+
+    <div id="toast" class="toast"></div>
+    <div class="container">
+        <h2><i class="fas fa-credit-card"></i> Accepted Payment Methods</h2>
+        <p>We offer secure and convenient payment options for your shopping experience:</p>
+        <ul>
+          <li><i class="fab fa-cc-visa"></i> Visa</li>
+          <li><i class="fab fa-cc-mastercard"></i> Mastercard</li>
+          <li><i class="fab fa-cc-paypal"></i> PayPal</li>
+          <li><i class="fab fa-cc-amex"></i> American Express</li>
+          <li><i class="fas fa-mobile-alt"></i> Instant EFT (via trusted providers)</li>
+        </ul>
+        <p>All transactions are encrypted and processed securely. We do not store your payment details.</p>
+      </div>
+      
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>We are dedicated to bringing you the finest selection of art, clothing, and accessories. Our curated collection ensures quality and style.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href=index.html>Home</a></li>
+                    <li><a href=index.html>Shop</a></li>
+                    <li><a href=about.html>About</a></li>
+                    <li><a href=contact.html>Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Customer Service</h3>
+                <ul>
+                    <li><a href=shippingInfo.html>Shipping Info</a></li>
+                    <li><a href=return-policy.html>Returns Policy</a></li>
+                    <li><a href=FAQ.html>FAQ</a></li>
+                    <li><a href=privacy.html>Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <p>Follow us on social media for updates and inspiration.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; Phenyo Web dev. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+    <script>
+        // Product Database
+        const products = {
+            art: [
+                {
+                    id: 'art1',
+                    name: 'Abstract Harmony',
+                    price: 299.99,
+                    image: 'art/art1.jpeg',
+                    category: 'art',
+                    description: 'A vibrant abstract painting with harmonious colors',
+                    inStock: true
+                },
+                {
+                    id: 'art2',
+                    name: 'Urban Landscape',
+                    price: 449.99,
+                    image: 'art/art2.jpeg',
+                    category: 'art',
+                    description: 'Modern cityscape in contemporary style',
+                    inStock: true
+                },
+                {
+                    id: 'art3',
+                    name: 'Urban Landscape',
+                    price: 449.99,
+                    image: 'art/art3.jpeg',
+                    category: 'art',
+                    description: 'Modern cityscape in contemporary style',
+                    inStock: true
+                },
+                {
+                    id: 'art4',
+                    name: 'Urban Landscape',
+                    price: 449.99,
+                    image: 'art/art4.jpeg',
+                    category: 'art',
+                    description: 'Modern cityscape in contemporary style',
+                    inStock: true
+                },
+                {
+                    id: 'art5',
+                    name: 'Urban Landscape',
+                    price: 449.99,
+                    image: 'art/art5.jpeg',
+                    category: 'art',
+                    description: 'Modern cityscape in contemporary style',
+                    inStock: true
+                },
+                {
+                    id: 'art6',
+                    name: 'Urban Landscape',
+                    price: 449.99,
+                    image: 'art/art6.jpeg',
+                    category: 'art',
+                    description: 'Modern cityscape in contemporary style',
+                    inStock: true
+                },
+                {
+                    id: 'art7',
+                    name: 'Urban Landscape',
+                    price: 449.99,
+                    image: 'art/art7.jpeg',
+                    category: 'art',
+                    description: 'Modern cityscape in contemporary style',
+                    inStock: true
+                },
+                {
+                    id: 'art8',
+                    name: 'Urban Landscape',
+                    price: 449.99,
+                    image: 'art/art8.jpeg',
+                    category: 'art',
+                    description: 'Modern cityscape in contemporary style',
+                    inStock: true
+                },
+                {
+                    id: 'art9',
+                    name: 'Urban Landscape',
+                    price: 449.99,
+                    image: 'art/art9.jpeg',
+                    category: 'art',
+                    description: 'Modern cityscape in contemporary style',
+                    inStock: true
+                },
+                {
+                    id: 'art10',
+                    name: 'Urban Landscape',
+                    price: 449.99,
+                    image: 'art/art10.jpeg',
+                    category: 'art',
+                    description: 'Modern cityscape in contemporary style',
+                    inStock: true
+                },
+                {
+                    id: 'art11',
+                    name: 'Urban Landscape',
+                    price: 449.99,
+                    image: 'art/art11.jpeg',
+                    category: 'art',
+                    description: 'Modern cityscape in contemporary style',
+                    inStock: true
+                },
+                {
+                    id: 'art12',
+                    name: 'Urban Landscape',
+                    price: 449.99,
+                    image: 'art/art12.jpeg',
+                    category: 'art',
+                    description: 'Modern cityscape in contemporary style',
+                    inStock: true
+                }
+                
+            ],
+            clothing: [
+                {
+                    id: 'clothing1',
+                    name: 'Designer T-Shirt',
+                    price: 29.99,
+                    image: 'fashion/f1.jpeg',
+                    category: 'clothing',
+                    sizes: ['S', 'M', 'L', 'XL'],
+                    description: 'Premium cotton designer t-shirt',
+                    inStock: true
+                },
+                {
+                    id: 'clothing2',
+                    name: 'Elegant Dress',
+                    price: 89.99,
+                    image: 'fashion/f2.jpeg',
+                    category: 'clothing',
+                    sizes: ['S', 'M', 'L'],
+                    description: 'Elegant evening dress with modern design',
+                    inStock: true
+                },
+                {
+                    id: 'clothing3',
+                    name: 'Elegant',
+                    price: 89.99,
+                    image: 'fashion/f7.jpeg',
+                    category: 'clothing',
+                    sizes: ['S', 'M', 'L'],
+                    description: 'Elegant evening dress with modern design',
+                    inStock: true
+                },
+                {
+                    id: 'clothing4',
+                    name: 'Elegant Dress',
+                    price: 89.99,
+                    image: 'fashion/f9.jpeg',
+                    category: 'clothing',
+                    sizes: ['S', 'M', 'L'],
+                    description: 'Elegant evening dress with modern design',
+                    inStock: true
+                },
+                {
+                    id: 'clothing5',
+                    name: 'Elegant Dress',
+                    price: 89.99,
+                    image: 'fashion/f12.jpeg',
+                    category: 'clothing',
+                    sizes: ['S', 'M', 'L'],
+                    description: 'Elegant evening dress with modern design',
+                    inStock: true
+                },
+                {
+                    id: 'clothing6',
+                    name: 'Elegant Dress',
+                    price: 89.99,
+                    image: 'fashion/f6.jpeg',
+                    category: 'clothing',
+                    sizes: ['S', 'M', 'L'],
+                    description: 'Elegant evening dress with modern design',
+                    inStock: true
+                },
+                {
+                    id: 'clothing7',
+                    name: 'Elegant Dress',
+                    price: 89.99,
+                    image: 'fashion/f4.jpeg',
+                    category: 'clothing',
+                    sizes: ['S', 'M', 'L'],
+                    description: 'Elegant evening dress with modern design',
+                    inStock: true
+                },
+                {
+                    id: 'clothing8',
+                    name: 'Elegant Dress',
+                    price: 89.99,
+                    image: 'fashion/f8.jpeg',
+                    category: 'clothing',
+                    sizes: ['S', 'M', 'L'],
+                    description: 'Elegant evening dress with modern design',
+                    inStock: true
+                },
+                {
+                    id: 'clothing9',
+                    name: 'Elegant Dress',
+                    price: 89.99,
+                    image: 'fashion/f5.jpeg',
+                    category: 'clothing',
+                    sizes: ['S', 'M', 'L'],
+                    description: 'Elegant evening dress with modern design',
+                    inStock: true
+                },
+                {
+                    id: 'clothing10',
+                    name: 'Elegant Dress',
+                    price: 89.99,
+                    image: 'fashion/f10.jpeg',
+                    category: 'clothing',
+                    sizes: ['S', 'M', 'L'],
+                    description: 'Elegant evening dress with modern design',
+                    inStock: true
+                },
+                {
+                    id: 'clothing11',
+                    name: 'Elegant Dress',
+                    price: 89.99,
+                    image: 'fashion/f11.jpeg',
+                    category: 'clothing',
+                    sizes: ['S', 'M', 'L'],
+                    description: 'Elegant evening dress with modern design',
+                    inStock: true
+                },
+                {
+                    id: 'clothing12',
+                    name: 'Elegant Dress',
+                    price: 89.99,
+                    image: 'fashion/f3.jpeg',
+                    category: 'clothing',
+                    sizes: ['S', 'M', 'L'],
+                    description: 'Elegant evening dress with modern design',
+                    inStock: true
+                }
+              
+            ],
+            accessories: [
+                {
+                    id: 'acc1',
+                    name: 'Leather Wallet',
+                    price: 49.99,
+                    image: 'accessories/ac1.jpeg',
+                    category: 'accessories',
+                    description: 'Genuine leather wallet with multiple compartments',
+                    inStock: true
+                },
+                {
+                    id: 'acc2',
+                    name: 'Silver Necklace',
+                    price: 79.99,
+                    image: 'accessories/ac2.jpeg',
+                    category: 'accessories',
+                    description: 'Sterling silver necklace with pendant',
+                    inStock: true
+                },
+                {
+                    id: 'acc2',
+                    name: 'Silver Necklace',
+                    price: 79.99,
+                    image: 'accessories/ac3.jpeg',
+                    category: 'accessories',
+                    description: 'Sterling silver necklace with pendant',
+                    inStock: true
+                },
+                {
+                    id: 'acc2',
+                    name: 'Silver Necklace',
+                    price: 79.99,
+                    image: 'accessories/ac4.jpeg',
+                    category: 'accessories',
+                    description: 'Sterling silver necklace with pendant',
+                    inStock: true
+                },
+                {
+                    id: 'acc2',
+                    name: 'Silver Necklace',
+                    price: 79.99,
+                    image: 'accessories/ac5.jpeg',
+                    category: 'accessories',
+                    description: 'Sterling silver necklace with pendant',
+                    inStock: true
+                },
+                {
+                    id: 'acc2',
+                    name: 'Silver Necklace',
+                    price: 79.99,
+                    image: 'accessories/ac6.jpeg',
+                    category: 'accessories',
+                    description: 'Sterling silver necklace with pendant',
+                    inStock: true
+                },
+                {
+                    id: 'acc2',
+                    name: 'Silver Necklace',
+                    price: 79.99,
+                    image: 'accessories/ac7.jpeg',
+                    category: 'accessories',
+                    description: 'Sterling silver necklace with pendant',
+                    inStock: true
+                },
+                {
+                    id: 'acc2',
+                    name: 'Silver Necklace',
+                    price: 79.99,
+                    image: 'accessories/ac8.jpeg',
+                    category: 'accessories',
+                    description: 'Sterling silver necklace with pendant',
+                    inStock: true
+                },
+                {
+                    id: 'acc2',
+                    name: 'Silver Necklace',
+                    price: 79.99,
+                    image: 'accessories/ac9.jpeg',
+                    category: 'accessories',
+                    description: 'Sterling silver necklace with pendant',
+                    inStock: true
+                },
+                {
+                    id: 'acc2',
+                    name: 'Silver Necklace',
+                    price: 79.99,
+                    image: 'accessories/ac10.jpeg',
+                    category: 'accessories',
+                    description: 'Sterling silver necklace with pendant',
+                    inStock: true
+                },
+                {
+                    id: 'acc2',
+                    name: 'Silver Necklace',
+                    price: 79.99,
+                    image: 'accessories/ac11.jpeg',
+                    category: 'accessories',
+                    description: 'Sterling silver necklace with pendant',
+                    inStock: true
+                },
+                {
+                    id: 'acc2',
+                    name: 'Silver Necklace',
+                    price: 79.99,
+                    image: 'accessories/ac12.jpeg',
+                    category: 'accessories',
+                    description: 'Sterling silver necklace with pendant',
+                    inStock: true
+                }
+            ]
+        };
+
+        // Product Utilities
+        const productUtils = {
+            getAllProducts() {
+                return Object.values(products).flat();
+            },
+            getProductById(id) {
+                return this.getAllProducts().find(product => product.id === id);
+            },
+            getProductsByCategory(category) {
+                return category === 'all' ? this.getAllProducts() : products[category] || [];
+            },
+            searchProducts(query, category = 'all') {
+                const searchTerm = query.toLowerCase();
+                const filteredProducts = this.getProductsByCategory(category);
+                return filteredProducts.filter(product => 
+                    product.name.toLowerCase().includes(searchTerm) ||
+                    product.description.toLowerCase().includes(searchTerm)
+                );
+            }
+        };
+
+        // Cart Management
+        class Cart {
+            constructor() {
+                this.items = this.loadCart();
+                this.updateCartCount();
+            }
+
+            loadCart() {
+                const savedCart = localStorage.getItem('cart');
+                return savedCart ? JSON.parse(savedCart) : [];
+            }
+
+            saveCart() {
+                localStorage.setItem('cart', JSON.stringify(this.items));
+                this.updateCartCount();
+                this.updateCartUI();
+            }
+
+            addItem(productId, quantity = 1) {
+                const product = productUtils.getProductById(productId);
+                if (!product) return;
+
+                const existingItem = this.items.find(item => item.id === productId);
+                if (existingItem) {
+                    existingItem.quantity += quantity;
+                } else {
+                    this.items.push({
+                        id: productId,
+                        name: product.name,
+                        price: product.price,
+                        quantity: quantity
+                    });
+                }
+
+                this.saveCart();
+                this.showToast(`Added ${product.name} to cart`);
+            }
+
+            removeItem(productId) {
+                const index = this.items.findIndex(item => item.id === productId);
+                if (index > -1) {
+                    const removedItem = this.items[index];
+                    this.items.splice(index, 1);
+                    this.saveCart();
+                    this.showToast(`Removed ${removedItem.name} from cart`);
+                }
+            }
+
+            clearCart() {
+                this.items = [];
+                this.saveCart();
+                this.showToast('Cart cleared');
+            }
+
+            getTotal() {
+                return this.items.reduce((total, item) => total + (item.price * item.quantity), 0);
+            }
+
+            updateCartCount() {
+                const cartCount = document.getElementById('cart-count');
+                if (cartCount) {
+                    const totalItems = this.items.reduce((sum, item) => sum + item.quantity, 0);
+                    cartCount.textContent = totalItems;
+                }
+            }
+
+            updateCartUI() {
+                const cartItems = document.getElementById('cart-items');
+                const cartTotal = document.getElementById('cart-total');
+                
+                if (cartItems) {
+                    cartItems.innerHTML = this.items.map(item => `
+                        <div class="cart-item">
+                            <div>
+                                <div>${item.name}</div>
+                                <div>R${item.price} × ${item.quantity}</div>
+                            </div>
+                            <button onclick="cart.removeItem('${item.id}')" class="btn-danger">×</button>
+                        </div>
+                    `).join('');
+                }
+
+                if (cartTotal) {
+                    cartTotal.textContent = this.getTotal().toFixed(2);
+                }
+            }
+
+            showToast(message) {
+                const toast = document.getElementById('toast');
+                if (toast) {
+                    toast.textContent = message;
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 3000);
+                }
+            }
+
+            checkout() {
+                if (this.items.length === 0) {
+                    this.showToast('Your cart is empty');
+                    return;
+                }
+
+                const total = this.getTotal();
+                alert(`Total to pay: R${total.toFixed(2)}\nThank you for your purchase!`);
+                this.clearCart();
+            }
+        }
+
+        // Gallery Management
+        class Gallery {
+            constructor() {
+                this.slideIndices = {
+                    art: 1,
+                    clothing: 1,
+                    accessories: 1
+                };
+                this.autoplayIntervals = {};
+                this.initializeGallery();
+            }
+
+            initializeGallery() {
+                // Initialize each category section
+                Object.keys(products).forEach(category => {
+                    this.initializeCategorySection(category);
+                });
+            }
+
+            initializeCategorySection(category) {
+                const slidesContainer = document.getElementById(`${category}-slides-container`);
+                const thumbnailsContainer = document.getElementById(`${category}-thumbnails`);
+                const categoryProducts = products[category];
+
+                if (!slidesContainer || !thumbnailsContainer || !categoryProducts) return;
+
+                // Initialize slides
+                slidesContainer.innerHTML = categoryProducts.map((product, index) => `
+                    <div class="mySlides" data-category="${category}">
+                        <img src="${product.image}" 
+                             alt="${product.name}"
+                             loading="lazy"
+                             onload="this.style.opacity='1'"
+                             style="opacity: 0; transition: opacity 0.5s ease;">
+                        <div class="product-info">
+                            <h3>${product.name}</h3>
+                            <p>${product.description}</p>
+                            <p class="price-label">R${product.price.toFixed(2)}</p>
+                            ${product.sizes ? 
+                                `<p class="sizes">Sizes: ${product.sizes.join(', ')}</p>` : 
+                                ''}
+                            <button class="add-to-cart-btn" onclick="cart.addItem('${product.id}')">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                `).join('');
+
+                // Initialize thumbnails
+                thumbnailsContainer.innerHTML = categoryProducts.map((product, index) => `
+                    <div class="column" data-category="${category}" data-name="${product.name.toLowerCase()}">
+                        <img class="demo cursor" 
+                             src="${product.image}"
+                             loading="lazy"
+                             onclick="gallery.currentSlide(${index + 1}, '${category}')"
+                             alt="${product.name}">
+                        <div class="thumbnail-info">
+                            <p>${product.name}</p>
+                            <p>R${product.price.toFixed(2)}</p>
+                        </div>
+                    </div>
+                `).join('');
+
+                this.showSlides(1, category);
+                this.startAutoplay(category);
+                this.addTouchSupport(slidesContainer, category);
+            }
+
+            addTouchSupport(container, category) {
+                let touchStartX = 0;
+                let touchEndX = 0;
+
+                container.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                }, false);
+
+                container.addEventListener('touchend', (e) => {
+                    touchEndX = e.changedTouches[0].screenX;
+                    this.handleSwipe(category, touchStartX, touchEndX);
+                }, false);
+            }
+
+            handleSwipe(category, startX, endX) {
+                const swipeThreshold = 50;
+                const diff = startX - endX;
+
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0) {
+                        this.plusSlides(1, category);
+                    } else {
+                        this.plusSlides(-1, category);
+                    }
+                }
+            }
+
+            startAutoplay(category) {
+                this.stopAutoplay(category);
+                this.autoplayIntervals[category] = setInterval(() => {
+                    this.plusSlides(1, category);
+                }, 5000);
+            }
+
+            stopAutoplay(category) {
+                if (this.autoplayIntervals[category]) {
+                    clearInterval(this.autoplayIntervals[category]);
+                    this.autoplayIntervals[category] = null;
+                }
+            }
+
+            plusSlides(n, category) {
+                this.showSlides(this.slideIndices[category] + n, category);
+            }
+
+            currentSlide(n, category) {
+                this.showSlides(n, category);
+            }
+
+            showSlides(n, category) {
+                const slides = document.querySelectorAll(`#${category}-slides-container .mySlides`);
+                const dots = document.querySelectorAll(`#${category}-thumbnails .demo`);
+                
+                if (!slides.length) return;
+
+                if (n > slides.length) n = 1;
+                if (n < 1) n = slides.length;
+
+                this.slideIndices[category] = n;
+
+                Array.from(slides).forEach(slide => {
+                    slide.style.display = "none";
+                    slide.classList.remove("active");
+                });
+
+                Array.from(dots).forEach(dot => dot.classList.remove("active"));
+
+                slides[n - 1].style.display = "block";
+                setTimeout(() => {
+                    slides[n - 1].classList.add("active");
+                }, 10);
+
+                dots[n - 1].classList.add("active");
+            }
+
+            filterProducts() {
+                const searchInput = document.getElementById('searchInput');
+                const categorySelect = document.getElementById('categoryFilter');
+                
+                if (!searchInput || !categorySelect) return;
+
+                const searchTerm = searchInput.value.toLowerCase();
+                const selectedCategory = categorySelect.value;
+
+                // Show/hide category sections based on filter
+                Object.keys(products).forEach(category => {
+                    const section = document.getElementById(`${category}-section`);
+                    if (section) {
+                        section.style.display = 
+                            (selectedCategory === 'all' || selectedCategory === category) ? 'block' : 'none';
+                    }
+                });
+
+                // Filter products within visible sections
+                const columns = document.querySelectorAll('.column');
+                columns.forEach(column => {
+                    const name = column.getAttribute('data-name');
+                    const productCategory = column.getAttribute('data-category');
+                    const matchesSearch = name.includes(searchTerm);
+                    const matchesCategory = selectedCategory === 'all' || productCategory === selectedCategory;
+                    
+                    column.style.display = matchesSearch && matchesCategory ? 'block' : 'none';
+                });
+            }
+        }
+
+        // Initialize components
+        const cart = new Cart();
+        const gallery = new Gallery();
+
+         // Setup event listeners
+         document.addEventListener('DOMContentLoaded', () => {
+            const cartToggle = document.getElementById('cart-toggle');
+            const cartSidebar = document.getElementById('cart');
+            const closeCart = document.querySelector('.close-cart');
+            const checkoutBtn = document.getElementById('checkout');
+            const clearCartBtn = document.getElementById('clear-cart');
+            const searchInput = document.getElementById('searchInput');
+            const categorySelect = document.getElementById('categoryFilter');
+            const slidesContainer = document.getElementById('slides-container');
+            const prevButton = document.querySelector('.prev');
+            const nextButton = document.querySelector('.next');
+
+            // Add prev/next button handlers
+            if (prevButton) {
+                prevButton.addEventListener('click', () => gallery.plusSlides(-1));
+            }
+            if (nextButton) {
+                nextButton.addEventListener('click', () => gallery.plusSlides(1));
+            }
+
+            if (cartToggle && cartSidebar) {
+                cartToggle.addEventListener('click', () => {
+                    cartSidebar.classList.toggle('open');
+                });
+            }
+
+            if (closeCart && cartSidebar) {
+                closeCart.addEventListener('click', () => {
+                    cartSidebar.classList.remove('open');
+                });
+            }
+
+            if (checkoutBtn) {
+                checkoutBtn.addEventListener('click', () => cart.checkout());
+            }
+
+            if (clearCartBtn) {
+                clearCartBtn.addEventListener('click', () => cart.clearCart());
+            }
+
+            if (searchInput) {
+                searchInput.addEventListener('input', () => gallery.filterProducts());
+            }
+
+            if (categorySelect) {
+                categorySelect.addEventListener('change', () => gallery.filterProducts());
+            }
+
+            if (slidesContainer) {
+                slidesContainer.addEventListener('mouseenter', () => gallery.stopAutoplay());
+                slidesContainer.addEventListener('mouseleave', () => gallery.startAutoplay());
+            }
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') {
+                    gallery.plusSlides(-1);
+                } else if (e.key === 'ArrowRight') {
+                    gallery.plusSlides(1);
+                }
+            });
+
+            // Close cart when clicking outside
+            document.addEventListener('click', (e) => {
+                if (cartSidebar && cartToggle) {
+                    if (!cartSidebar.contains(e.target) && !cartToggle.contains(e.target)) {
+                        cartSidebar.classList.remove('open');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
