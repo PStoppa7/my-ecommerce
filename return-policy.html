@@ -3,277 +3,257 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Privacy Policy</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>Return Policy | My E-commerce</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       background-color: #f9f9f9;
       color: #333;
+    }
+
+    /* Navbar */
+    nav {
+      background-color: #007BFF;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    nav .logo {
+      font-size: 1.5rem;
+      color: white;
+      font-weight: bold;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+      padding-bottom: 5px;
+      border-bottom: 2px solid transparent;
+    }
+
+    nav ul li a:hover,
+    nav ul li a.active {
+      color: #e2e2e2;
+      border-bottom: 2px solid #fff;
     }
 
     header {
       background-color: #007BFF;
       color: white;
-      padding: 1rem;
+      padding: 2rem;
       text-align: center;
-    }
-
-    nav {
-      background-color: #333;
-      text-align: center;
-      padding: 1rem;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: bold;
-      padding: 0.5rem 1rem;
-      border-radius: 5px;
-    }
-
-    nav a.active {
-      background-color: #007BFF;
     }
 
     .container {
       max-width: 900px;
-      margin: 2rem auto;
-      background-color: white;
+      margin: auto;
       padding: 2rem;
+      background-color: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      margin-top: 2rem;
       border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
 
     h2 {
       color: #007BFF;
-    }
-
-    h3 {
       margin-top: 1.5rem;
     }
 
-    p, ul {
-      line-height: 1.6;
+    ul {
+      padding-left: 1.5rem;
     }
 
     footer {
       text-align: center;
       padding: 1rem;
-      background-color: #111;
+      margin-top: 3rem;
+      background-color: #222;
       color: white;
-      margin-top: 2rem;
     }
 
-    footer {
-      background-color: var(--footer-bg);
-      color: black;
-      padding: 3rem 0;
-      margin-top: auto;
-    }
-
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      padding: 0 2rem;
-    }
-
-    .footer-section h3 {
-      margin-bottom: 1rem;
-      font-size: 1.2rem;
-    }
-
-    .footer-section ul {
-      list-style: none;
-    }
-
-    .footer-section ul li {
-      margin-bottom: 0.5rem;
-    }
-
-    .footer-section a {
-      color: grey;
-      text-decoration: none;
-      transition: color 0.3s ease;
-    }
-
-    .footer-section a:hover {
-      color: var(--primary-color);
-    }
-
-    .social-links {
+    .icon-title {
       display: flex;
-      gap: 1rem;
-      margin-top: 1rem;
+      align-items: center;
+      gap: 10px;
     }
 
-    .social-links a {
-      font-size: 1.5rem;
+    .icon-title i {
+      color: #007BFF;
     }
 
-    .footer-bottom {
-      text-align: center;
-      padding-top: 2rem;
-      margin-top: 2rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-
-    /* Responsive Design */
-    @media (max-width: 1200px) {
-      .container {
-        padding: 1.5rem;
-      }
-
-      nav a {
-        padding: 0.5rem;
-        margin: 0 10px;
-      }
-    }
-
-    /* Mobile-first approach */
     @media (max-width: 768px) {
-      header {
-        padding: 0.8rem;
-      }
-
-      nav {
-        padding: 1rem;
-      }
-
-      .container {
-        margin: 1rem;
-        padding: 1rem;
-      }
-
-      nav a {
-        display: block;
-        margin: 10px 0;
-        text-align: center;
-        padding: 0.8rem;
-        font-size: 1.1rem;
-      }
-
-      .footer-content {
-        grid-template-columns: 1fr;
-        text-align: center;
-        padding: 1rem;
-      }
-
-      .social-links {
-        justify-content: center;
-        gap: 1.2rem;
-      }
-
-      footer {
-        padding: 2rem 1rem;
-      }
-
-      .footer-section h3 {
-        font-size: 1.1rem;
-      }
-
-      .footer-bottom {
-        padding-top: 1rem;
-        margin-top: 1rem;
-      }
-
-      .footer-content a {
-        font-size: 1.1rem;
+      nav ul {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
       }
     }
+    footer {
+            background-color: var(--footer-bg);
+            color: black;
+            padding: 3rem 0;
+            margin-top: auto;
+        }
 
-    @media (max-width: 480px) {
-      nav a {
-        font-size: 1rem;
-        padding: 0.7rem;
-        margin: 8px 0;
-      }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 0 2rem;
+        }
 
-      .container {
-        padding: 0.8rem;
-      }
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
 
-      .footer-section h3 {
-        font-size: 1rem;
-      }
+        .footer-section ul {
+            list-style: none;
+        }
 
-      .social-links a {
-        font-size: 1.3rem;
-      }
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
 
-      .footer-bottom {
-        font-size: 0.9rem;
-      }
-    }
+        .footer-section a {
+            color: grey;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
 
+        .footer-section a:hover {
+            color: var(--primary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            font-size: 1.5rem;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+         /* Responsive Design */
+         @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+        }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>My E-commerce</h1>
-    <p>Your privacy matters to us</p>
-  </header>
-
+  <!-- Navbar -->
   <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About Us</a>
-    <a href="shippingInfo.html">Shipping Info</a>
-    <a href="return-policy.html">Returns</a>
-    <a href="privacy.html" class="active">Privacy Policy</a>
-    <a href="contact.html">Contact</a>
+    <div class="logo">YourStore</div>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="shippingInfo.html">Shipping Info</a></li>
+      <li><a href="return-policy.html" class="active">Returns</a></li>
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      
+    </ul>
   </nav>
 
+  <!-- Header -->
+  <header>
+    <h1><i class="fas fa-undo-alt"></i> Return & Refund Policy</h1>
+    <p>Your satisfaction is our priority</p>
+  </header>
+
+  <!-- Main Content -->
   <div class="container">
-    <h2><i class="fas fa-user-shield"></i> Privacy Policy</h2>
+    <div class="icon-title">
+      <i class="fas fa-info-circle"></i>
+      <h2>Overview</h2>
+    </div>
+    <p>We want you to be happy with your purchase. If you're not satisfied, we're here to help.</p>
 
-    <p>At My E-commerce, your privacy is our priority. This policy explains how we collect, use, and protect your information.</p>
-
-    <h3>1. Information We Collect</h3>
+    <div class="icon-title">
+      <i class="fas fa-clock"></i>
+      <h2>Returns</h2>
+    </div>
+    <p>You have <strong>14 calendar days</strong> to return an item from the date you received it.</p>
     <ul>
-      <li><strong>Personal Information:</strong> Name, email, address, phone number.</li>
-      <li><strong>Payment Details:</strong> Collected securely during checkout (not stored on our servers).</li>
-      <li><strong>Usage Data:</strong> Pages visited, time spent, and device/browser details.</li>
+      <li>The item must be unused and in the same condition that you received it.</li>
+      <li>The item must be in the original packaging.</li>
+      <li>You’ll need to provide a receipt or proof of purchase.</li>
     </ul>
 
-    <h3>2. How We Use Your Information</h3>
+    <div class="icon-title">
+      <i class="fas fa-exchange-alt"></i>
+      <h2>Refunds</h2>
+    </div>
+    <p>Once we receive your item, we will inspect it and notify you of the status of your refund.</p>
     <ul>
-      <li>To process your orders and deliver products.</li>
-      <li>To send updates, promotions, or important service notices.</li>
-      <li>To improve our website and user experience.</li>
+      <li>If approved, your refund will be processed to your original payment method.</li>
+      <li>Refunds may take 5–7 business days to reflect depending on your bank.</li>
     </ul>
 
-    <h3>3. Information Sharing</h3>
-    <p>We do not sell or rent your data. We may share limited data with:</p>
+    <div class="icon-title">
+      <i class="fas fa-times-circle"></i>
+      <h2>Non-Returnable Items</h2>
+    </div>
     <ul>
-      <li>Trusted delivery partners to complete orders.</li>
-      <li>Payment processors to facilitate secure transactions.</li>
-      <li>Legal authorities if required by law.</li>
+      <li>Gift cards</li>
+      <li>Downloadable software products</li>
+      <li>Health and personal care items</li>
     </ul>
 
-    <h3>4. Data Security</h3>
-    <p>We use encryption, firewalls, and secure servers to protect your information from unauthorized access.</p>
+    <div class="icon-title">
+      <i class="fas fa-truck"></i>
+      <h2>Shipping</h2>
+    </div>
+    <p>You will be responsible for paying your own shipping costs for returning your item. Shipping costs are non-refundable.</p>
 
-    <h3>5. Your Rights</h3>
-    <ul>
-      <li>Access your data.</li>
-      <li>Request corrections or deletions.</li>
-      <li>Opt out of marketing at any time.</li>
-    </ul>
-
-    <h3>6. Cookies</h3>
-    <p>We use cookies to personalize your experience and analyze traffic. You can adjust your cookie settings in your browser.</p>
-
-    <h3>7. Changes to This Policy</h3>
-    <p>This policy may be updated from time to time. Changes will be posted here with a revised date.</p>
-
-    <p>If you have questions, please <a href="contact.html">contact us</a>.</p>
+    <div class="icon-title">
+      <i class="fas fa-envelope"></i>
+      <h2>Contact Us</h2>
+    </div>
+    <p>If you have any questions about our return policy, contact us at: <br><strong>support@my-ecommerce.co.za</strong></p>
   </div>
 
   <footer>
@@ -305,4 +285,15 @@
             <p>Follow us on social media for updates and inspiration.</p>
             <div class="social-links">
                 <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; Phenyo Web dev. All rights reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>
